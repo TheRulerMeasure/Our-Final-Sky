@@ -1,0 +1,80 @@
+{
+    "spawn_list": [
+        {
+            "index": 0,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 100 },
+            "delay_before_spawning": 10.0
+        },
+        {
+            "index": 1,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 150 },
+            "delay_before_spawning": 5.0
+        },
+        {
+            "index": 2,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 155 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "index": 3,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "index": 4,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "index": 5,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 100 },
+            "delay_before_spawning": 3.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 130 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 127 },
+            "delay_before_spawning": 2.5
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 122 },
+            "delay_before_spawning": 0.5
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 111 },
+            "delay_before_spawning": 0.5
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 100 },
+            "delay_before_spawning": 0.25
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 95 },
+            "delay_before_spawning": 25.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 97 },
+            "delay_before_spawning": 3.0
+        }
+    ]
+}

@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/chapter1.png" type="Texture" id=1]
+[ext_resource path="res://assets/chapter2.png" type="Texture" id=2]
+[ext_resource path="res://assets/chapter3.png" type="Texture" id=3]
+[ext_resource path="res://assets/mark.png" type="Texture" id=4]
+[ext_resource path="res://scenes/LevelChanger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=6]
+
+[node name="ChapterMenu" type="Node"]
+
+[node name="BackToMenu" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/MainMenu.tscn"
+
+[node name="CH1Level" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/CH1.tscn"
+
+[node name="CH2Level" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/CH2.tscn"
+
+[node name="CH3Level" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/CH3.tscn"
+
+[node name="MainCanvas" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="MainCanvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainCanvas/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -153.5
+margin_top = -113.5
+margin_right = 153.5
+margin_bottom = 113.5
+
+[node name="CenterContainer" type="CenterContainer" parent="MainCanvas/Control/MarginContainer"]
+margin_right = 307.0
+margin_bottom = 227.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvas/Control/MarginContainer/CenterContainer"]
+margin_left = 91.0
+margin_top = 13.0
+margin_right = 215.0
+margin_bottom = 213.0
+
+[node name="CH1" type="TextureButton" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 0.866667, 0.843137, 0.698039, 1 )
+margin_right = 124.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 1 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer/CH1" instance=ExtResource( 6 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../../../../CH1Level")
+target_method = "_change_level"
+
+[node name="CH2" type="TextureButton" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 0.866667, 0.843137, 0.698039, 1 )
+margin_top = 68.0
+margin_right = 124.0
+margin_bottom = 132.0
+texture_normal = ExtResource( 2 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer/CH2" instance=ExtResource( 6 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../../../../CH2Level")
+target_method = "_change_level"
+
+[node name="CH3" type="TextureButton" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 0.866667, 0.843137, 0.698039, 1 )
+margin_top = 136.0
+margin_right = 124.0
+margin_bottom = 200.0
+texture_normal = ExtResource( 3 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/MarginContainer/CenterContainer/VBoxContainer/CH3" instance=ExtResource( 6 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../../../../CH3Level")
+target_method = "_change_level"
+
+[node name="TextureButton" type="TextureButton" parent="MainCanvas/Control"]
+modulate = Color( 0.517647, 0.478431, 0.376471, 1 )
+margin_left = 96.0
+margin_top = 15.0
+margin_right = 128.0
+margin_bottom = 47.0
+texture_normal = ExtResource( 4 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/TextureButton" instance=ExtResource( 6 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../BackToMenu")
+target_method = "_change_level"

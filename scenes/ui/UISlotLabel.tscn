@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/DialFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/UISlotLabel.gd" type="Script" id=2]
+
+[node name="UISlotLabel" type="MarginContainer"]
+margin_left = 8.0
+margin_top = 21.0
+margin_right = 96.0
+margin_bottom = 68.0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 88.0
+margin_bottom = 47.0
+
+[node name="S1" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 88.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/S1"]
+margin_top = 2.0
+margin_right = 88.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 1 )
+text = "slot 1: 0"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/S1"]
+margin_right = 88.0
+margin_bottom = 13.0
+border_width = 1.4
+editor_only = false
+
+[node name="S2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 17.0
+margin_right = 88.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/S2"]
+margin_top = 2.0
+margin_right = 88.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 1 )
+text = "slot 2: 0"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/S2"]
+visible = false
+margin_right = 88.0
+margin_bottom = 13.0
+border_width = 1.4
+editor_only = false
+
+[node name="S3" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 88.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/S3"]
+margin_top = 2.0
+margin_right = 88.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 1 )
+text = "slot 3: 0"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/S3"]
+visible = false
+margin_right = 88.0
+margin_bottom = 13.0
+border_width = 1.4
+editor_only = false

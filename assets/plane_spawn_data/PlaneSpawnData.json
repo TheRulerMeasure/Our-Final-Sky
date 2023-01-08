@@ -1,0 +1,40 @@
+{
+    "spawn_list": [
+        {
+            "index": 0,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 100 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "index": 1,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 150 },
+            "delay_before_spawning": 5.0
+        },
+        {
+            "index": 2,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 155 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "index": 3,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 1.0
+        },
+        {
+            "index": 4,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "index": 5,
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 175 },
+            "delay_before_spawning": 2.0
+        }
+    ]
+}

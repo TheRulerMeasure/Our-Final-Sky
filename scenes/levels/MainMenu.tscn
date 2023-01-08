@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/our_final_sky.png" type="Texture" id=1]
+[ext_resource path="res://assets/start_button.png" type="Texture" id=2]
+[ext_resource path="res://assets/setting_button.png" type="Texture" id=3]
+[ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/LevelChanger.tscn" type="PackedScene" id=5]
+
+[node name="MainMenu" type="Node"]
+
+[node name="GotoChapters" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/ChapterMenu.tscn"
+
+[node name="MainCanvas" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="MainCanvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainCanvas/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -148.5
+margin_top = -120.5
+margin_right = 148.5
+margin_bottom = 120.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvas/Control/MarginContainer"]
+margin_right = 297.0
+margin_bottom = 241.0
+
+[node name="TextureRect" type="TextureRect" parent="MainCanvas/Control/MarginContainer/VBoxContainer"]
+modulate = Color( 0.960784, 0.843137, 0.556863, 1 )
+margin_right = 297.0
+margin_bottom = 92.0
+texture = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MainCanvas/Control/MarginContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 297.0
+margin_bottom = 241.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 297.0
+margin_bottom = 145.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer"]
+margin_left = 86.0
+margin_top = 6.0
+margin_right = 210.0
+margin_bottom = 138.0
+size_flags_vertical = 3
+
+[node name="StartBut" type="TextureButton" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 0.517647, 0.439216, 0.439216, 1 )
+margin_right = 124.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 2 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer/StartBut" instance=ExtResource( 4 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../../../../../../GotoChapters")
+target_method = "_change_level"
+
+[node name="SettingsBut" type="TextureButton" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 0.352941, 0.305882, 0.231373, 1 )
+margin_top = 68.0
+margin_right = 124.0
+margin_bottom = 132.0
+texture_normal = ExtResource( 3 )

@@ -1,0 +1,206 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/ui/LowerLeftLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/skybg.png" type="Texture" id=2]
+[ext_resource path="res://assets/cloud.png" type="Texture" id=3]
+[ext_resource path="res://scenes/projectiles/BulletSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Shooter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/TurretGroup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/twin_stick.png" type="Texture" id=7]
+[ext_resource path="res://assets/cop_town.png" type="Texture" id=8]
+[ext_resource path="res://assets/darky_city.png" type="Texture" id=9]
+[ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/step_small_circle.png" type="Texture" id=11]
+[ext_resource path="res://scenes/PlaneSpawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/ui/UI.tscn" type="PackedScene" id=13]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.251613, 1 )
+colors = PoolColorArray( 0.215686, 0.215686, 0.215686, 0, 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 9.9
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.105882, 0.105882, 0.101961, 1 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+
+[node name="Game" type="Node"]
+
+[node name="LowerLeftLabel" parent="." instance=ExtResource( 1 )]
+text = "Computer 1: Attack air threads."
+
+[node name="NodeIOMin" parent="LowerLeftLabel" instance=ExtResource( 10 )]
+on_signal = "done_display"
+target_path = NodePath("../../LowerLeftLabel2")
+target_method = "display_label"
+
+[node name="LowerLeftLabel2" parent="." instance=ExtResource( 1 )]
+text = "Computer 2: Shut up computer 1."
+
+[node name="LowerLeftLabel3" parent="." instance=ExtResource( 1 )]
+text = "Computer 2: All planes are gone. Good job."
+delay_before_remove = 3.0
+
+[node name="AutoSay" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="NodeIOMin" parent="AutoSay" instance=ExtResource( 10 )]
+on_signal = "timeout"
+target_path = NodePath("../../LowerLeftLabel")
+target_method = "display_label"
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="Skybg" type="Sprite" parent="World2D"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="City" type="Node2D" parent="World2D"]
+modulate = Color( 0.12549, 0.121569, 0.101961, 1 )
+
+[node name="DarkyCity" type="Sprite" parent="World2D/City"]
+position = Vector2( 75, 206 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+[node name="DarkyCity3" type="Sprite" parent="World2D/City"]
+position = Vector2( 230, 234 )
+texture = ExtResource( 9 )
+
+[node name="CopTown" type="Sprite" parent="World2D/City"]
+position = Vector2( 156, 235 )
+texture = ExtResource( 8 )
+
+[node name="TwinStick" type="Sprite" parent="World2D/City"]
+position = Vector2( 60, 226 )
+texture = ExtResource( 7 )
+
+[node name="TwinStick2" type="Sprite" parent="World2D/City"]
+position = Vector2( 178, 231 )
+texture = ExtResource( 7 )
+
+[node name="Clouds" type="Node2D" parent="World2D"]
+
+[node name="Cloud" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 58, 108 )
+texture = ExtResource( 3 )
+
+[node name="Cloud2" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 111, 57 )
+texture = ExtResource( 3 )
+
+[node name="Cloud3" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 147, 41 )
+texture = ExtResource( 3 )
+
+[node name="Cloud4" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 297, 35 )
+texture = ExtResource( 3 )
+
+[node name="Cloud5" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 414, 37 )
+texture = ExtResource( 3 )
+
+[node name="Cloud6" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 465, 60 )
+texture = ExtResource( 3 )
+
+[node name="Cloud7" type="Sprite" parent="World2D/Clouds"]
+position = Vector2( 224, 56 )
+texture = ExtResource( 3 )
+
+[node name="Planes" type="Node2D" parent="World2D"]
+
+[node name="PlaneSpawner" parent="World2D/Planes" instance=ExtResource( 12 )]
+plane_spawn_data = "res://assets/plane_spawn_data/PlaneSpawnData.json"
+
+[node name="NodeIOMin" parent="World2D/Planes/PlaneSpawner" instance=ExtResource( 10 )]
+on_signal = "done_spawning_and_no_planes"
+target_path = NodePath("../../../../LowerLeftLabel3")
+target_method = "display_label"
+
+[node name="Bullets" type="Node2D" parent="World2D"]
+
+[node name="BulletSpawner" parent="World2D/Bullets" instance=ExtResource( 4 )]
+
+[node name="Turrets" type="Node2D" parent="World2D"]
+
+[node name="Shooter" parent="World2D/Turrets" instance=ExtResource( 5 )]
+position = Vector2( 135, 241 )
+spread = 0.05
+reload = 0.226
+
+[node name="Shooter2" parent="World2D/Turrets" instance=ExtResource( 5 )]
+position = Vector2( 158, 248 )
+spread = 0.04
+reload = 0.325
+delay_before_first_shot = 0.128
+
+[node name="TurretGroup" parent="World2D/Turrets" instance=ExtResource( 6 )]
+max_rounds = 20
+
+[node name="Turrets2" type="Node2D" parent="World2D"]
+
+[node name="Shooter" parent="World2D/Turrets2" instance=ExtResource( 5 )]
+position = Vector2( 72, 232 )
+reload = 0.398
+
+[node name="Shooter2" parent="World2D/Turrets2" instance=ExtResource( 5 )]
+position = Vector2( 99, 232 )
+reload = 0.497
+delay_before_first_shot = 0.128
+
+[node name="TurretGroup" parent="World2D/Turrets2" instance=ExtResource( 6 )]
+group_index = 1
+max_rounds = 15
+
+[node name="Turrets3" type="Node2D" parent="World2D"]
+
+[node name="Shooter" parent="World2D/Turrets3" instance=ExtResource( 5 )]
+position = Vector2( 194, 247 )
+spread = 0.112
+reload = 0.128
+
+[node name="TurretGroup" parent="World2D/Turrets3" instance=ExtResource( 6 )]
+active_current = true
+group_index = 2
+max_rounds = 15
+
+[node name="Smokes" type="Node2D" parent="World2D"]
+
+[node name="Smoke" type="Particles2D" parent="World2D/Smokes"]
+position = Vector2( 20, 235 )
+amount = 10
+lifetime = 4.7
+process_material = SubResource( 4 )
+texture = ExtResource( 11 )
+
+[node name="Smoke2" type="Particles2D" parent="World2D/Smokes"]
+position = Vector2( 94, 239 )
+amount = 10
+lifetime = 4.7
+process_material = SubResource( 4 )
+texture = ExtResource( 11 )
+
+[node name="Smoke3" type="Particles2D" parent="World2D/Smokes"]
+position = Vector2( 255, 252 )
+amount = 10
+lifetime = 4.7
+process_material = SubResource( 4 )
+texture = ExtResource( 11 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="UI" parent="." instance=ExtResource( 13 )]
