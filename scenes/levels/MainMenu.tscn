@@ -1,21 +1,75 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/our_final_sky.png" type="Texture" id=1]
+[ext_resource path="res://assets/our_final_sky_light.png" type="Texture" id=1]
 [ext_resource path="res://assets/start_button.png" type="Texture" id=2]
-[ext_resource path="res://assets/setting_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/credits_button.png" type="Texture" id=3]
 [ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/LevelChanger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/final_sky_menu.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0980392, 0.0901961, 0.0627451, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "bg_effect"
+length = 10.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0980392, 0.0901961, 0.0627451, 1 ), Color( 0.501961, 0.462745, 0.427451, 1 ), Color( 0.0980392, 0.0901961, 0.0627451, 1 ) ]
+}
 
 [node name="MainMenu" type="Node"]
 
+[node name="AutoPlayAnimTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="NodeIOMin" parent="AutoPlayAnimTimer" instance=ExtResource( 4 )]
+on_signal = "timeout"
+target_path = NodePath("../../MainCanvas/Control/AnimationPlayer")
+target_method = "play"
+params = [ "bg_effect" ]
+
 [node name="GotoChapters" parent="." instance=ExtResource( 5 )]
 new_level_filename = "res://scenes/levels/ChapterMenu.tscn"
+
+[node name="GotoCredits" parent="." instance=ExtResource( 5 )]
+new_level_filename = "res://scenes/levels/Credits.tscn"
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="MainCanvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="MainCanvas/Control"]
+modulate = Color( 0.0980392, 0.0901961, 0.0627451, 1 )
+margin_right = 512.0
+margin_bottom = 256.0
+texture = ExtResource( 6 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MainCanvas/Control"]
 anchor_left = 0.5
@@ -32,7 +86,7 @@ margin_right = 297.0
 margin_bottom = 241.0
 
 [node name="TextureRect" type="TextureRect" parent="MainCanvas/Control/MarginContainer/VBoxContainer"]
-modulate = Color( 0.960784, 0.843137, 0.556863, 1 )
+modulate = Color( 0.898039, 0.898039, 0.886275, 1 )
 margin_right = 297.0
 margin_bottom = 92.0
 texture = ExtResource( 1 )
@@ -66,9 +120,19 @@ on_signal = "pressed"
 target_path = NodePath("../../../../../../../../../GotoChapters")
 target_method = "_change_level"
 
-[node name="SettingsBut" type="TextureButton" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="CreditsBut" type="TextureButton" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
 modulate = Color( 0.352941, 0.305882, 0.231373, 1 )
 margin_top = 68.0
 margin_right = 124.0
 margin_bottom = 132.0
 texture_normal = ExtResource( 3 )
+
+[node name="NodeIOMin" parent="MainCanvas/Control/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/VBoxContainer/CreditsBut" instance=ExtResource( 4 )]
+on_signal = "pressed"
+target_path = NodePath("../../../../../../../../../GotoCredits")
+target_method = "_change_level"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainCanvas/Control"]
+root_node = NodePath("../TextureRect")
+anims/RESET = SubResource( 1 )
+anims/bg_effect = SubResource( 2 )

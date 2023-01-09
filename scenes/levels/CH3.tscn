@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/ui/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/skybg.png" type="Texture" id=2]
@@ -9,12 +9,174 @@
 [ext_resource path="res://scenes/projectiles/BulletSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Shooter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/TurretGroup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ui/LowerLeftLabel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/LevelChanger.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
 
 [node name="CH3" type="Node"]
+
+[node name="LevelChanger" parent="." instance=ExtResource( 12 )]
+new_level_filename = "res://scenes/levels/GameEnd.tscn"
+
+[node name="ChatLabels" type="Node" parent="."]
+
+[node name="D1" type="Timer" parent="ChatLabels"]
+wait_time = 0.75
+one_shot = true
+autostart = true
+
+[node name="NodeIOMin" parent="ChatLabels/D1" instance=ExtResource( 11 )]
+on_signal = "timeout"
+target_path = NodePath("../../ComChat")
+target_method = "display_label"
+
+[node name="ComChat" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: Air defense system online."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat2")
+target_method = "display_label"
+
+[node name="ComChat2" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: New explosive shell type available in slot 3."
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat2" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat3")
+target_method = "display_label"
+
+[node name="ComChat3" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: Multiple air targets detected."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat3" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat4")
+target_method = "display_label"
+
+[node name="ComChat4" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: Activating automatic defence system."
+delay_before_remove = 3.0
+
+[node name="ComChat5" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: Scanning for new target."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat5" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat6")
+target_method = "display_label"
+
+[node name="ComChat6" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: No new target detected."
+delay_before_remove = 0.1
+delay_percent = 0.6
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat6" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat7")
+target_method = "display_label"
+
+[node name="ComChat7" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: Receiving new responses."
+delay_before_remove = 4.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat7" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../D2")
+target_method = "start"
+
+[node name="D2" type="Timer" parent="ChatLabels"]
+one_shot = true
+
+[node name="NodeIOMin" parent="ChatLabels/D2" instance=ExtResource( 11 )]
+on_signal = "timeout"
+target_path = NodePath("../../ComChat8")
+target_method = "display_label"
+
+[node name="ComChat8" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: ..."
+delay_percent = 1.2
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat8" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat9")
+target_method = "display_label"
+
+[node name="ComChat9" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: Unable to read the responses."
+delay_before_remove = 0.08
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat9" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat10")
+target_method = "display_label"
+
+[node name="ComChat10" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: Receiving new responses."
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat10" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat11")
+target_method = "display_label"
+
+[node name="ComChat11" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: ..."
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat11" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat12")
+target_method = "display_label"
+
+[node name="ComChat12" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: New task received."
+delay_before_remove = 4.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat12" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat13")
+target_method = "display_label"
+
+[node name="ComChat13" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 2: Sending new task."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat13" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat14")
+target_method = "display_label"
+
+[node name="ComChat14" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: New task received."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat14" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat15")
+target_method = "display_label"
+
+[node name="ComChat15" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: Powering off."
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat15" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../ComChat16")
+target_method = "display_label"
+
+[node name="ComChat16" parent="ChatLabels" instance=ExtResource( 10 )]
+text = "Computer 1: ..."
+delay_before_remove = 4.0
+
+[node name="NodeIOMin" parent="ChatLabels/ComChat16" instance=ExtResource( 11 )]
+on_signal = "done_display"
+target_path = NodePath("../../../LevelChanger")
+target_method = "_change_level"
 
 [node name="World2D" type="Node2D" parent="."]
 
@@ -49,7 +211,12 @@ texture = ExtResource( 5 )
 [node name="Planes" type="Node2D" parent="World2D"]
 
 [node name="PlaneSpawner" parent="World2D/Planes" instance=ExtResource( 6 )]
-plane_spawn_data = "res://assets/plane_spawn_data/PlaneSpawnData.json"
+plane_spawn_data = "res://assets/plane_spawn_data/ch3_spawn.json"
+
+[node name="NodeIOMin" parent="World2D/Planes/PlaneSpawner" instance=ExtResource( 11 )]
+on_signal = "done_spawning_and_no_planes"
+target_path = NodePath("../../../../ChatLabels/ComChat5")
+target_method = "display_label"
 
 [node name="Bullets" type="Node2D" parent="World2D"]
 
@@ -58,41 +225,79 @@ plane_spawn_data = "res://assets/plane_spawn_data/PlaneSpawnData.json"
 [node name="Turrets" type="Node2D" parent="World2D"]
 
 [node name="Shooter" parent="World2D/Turrets" instance=ExtResource( 8 )]
-position = Vector2( 231, 246 )
-spread = 0.112
+position = Vector2( 35, 246 )
+spread = 0.054
+reload = 0.096
 
 [node name="Shooter2" parent="World2D/Turrets" instance=ExtResource( 8 )]
-position = Vector2( 249, 249 )
-spread = 0.154
+position = Vector2( 133, 227 )
+spread = 0.038
+reload = 0.113
 delay_before_first_shot = 0.145
+
+[node name="Shooter3" parent="World2D/Turrets" instance=ExtResource( 8 )]
+position = Vector2( 232, 233 )
+spread = 0.096
+reload = 0.079
+delay_before_first_shot = 0.167
 
 [node name="TurretGroup" parent="World2D/Turrets" instance=ExtResource( 9 )]
 active_current = true
-max_rounds = 15
+reload_time = 6.8
 
 [node name="Turrets2" type="Node2D" parent="World2D"]
 
 [node name="Shooter" parent="World2D/Turrets2" instance=ExtResource( 8 )]
-position = Vector2( 78, 232 )
+position = Vector2( 94, 233 )
+proj_type = 1
+reload = 0.334
+delay_before_first_shot = 0.113
 
 [node name="Shooter2" parent="World2D/Turrets2" instance=ExtResource( 8 )]
-position = Vector2( 55, 216 )
+position = Vector2( 61, 231 )
+proj_type = 1
+reload = 0.317
 delay_before_first_shot = 0.161
+
+[node name="Shooter3" parent="World2D/Turrets2" instance=ExtResource( 8 )]
+position = Vector2( 94, 233 )
+spread = 0.0
+reload = 0.113
 
 [node name="TurretGroup" parent="World2D/Turrets2" instance=ExtResource( 9 )]
 group_index = 1
 max_rounds = 16
+reload_time = 8.0
 
 [node name="Turrets3" type="Node2D" parent="World2D"]
 
 [node name="Shooter" parent="World2D/Turrets3" instance=ExtResource( 8 )]
-position = Vector2( 98, 236 )
-spread = 0.112
-reload = 0.079
+position = Vector2( 108, 233 )
+spread = 0.005
+reload = 0.155
+
+[node name="Shooter2" parent="World2D/Turrets3" instance=ExtResource( 8 )]
+position = Vector2( 146, 244 )
+spread = 0.005
+reload = 0.164
+delay_before_first_shot = 0.102
+
+[node name="Shooter3" parent="World2D/Turrets3" instance=ExtResource( 8 )]
+position = Vector2( 124, 239 )
+proj_type = 2
+spread = 0.063
+reload = 0.317
+
+[node name="Shooter4" parent="World2D/Turrets3" instance=ExtResource( 8 )]
+position = Vector2( 190, 247 )
+proj_type = 2
+spread = 0.092
+reload = 0.42
 
 [node name="TurretGroup" parent="World2D/Turrets3" instance=ExtResource( 9 )]
 group_index = 2
-max_rounds = 13
+max_rounds = 20
+reload_time = 8.6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

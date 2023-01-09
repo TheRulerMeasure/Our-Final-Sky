@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/ui/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/skybg.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/step_small_circle.png" type="Texture" id=10]
 [ext_resource path="res://scenes/ui/LowerLeftLabel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/NodeIOMin.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/LevelChanger.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.251613, 1 )
@@ -34,6 +35,9 @@ background_mode = 4
 glow_enabled = true
 
 [node name="CH1" type="Node"]
+
+[node name="LevelChanger" parent="." instance=ExtResource( 13 )]
+new_level_filename = "res://scenes/levels/ChapterMenu.tscn"
 
 [node name="ChatLabels" type="Node" parent="."]
 
@@ -108,6 +112,112 @@ target_method = "display_label"
 [node name="LowerLeftLabel6" parent="ChatLabels" instance=ExtResource( 11 )]
 text = "Computer 1: Switching between slots. [1/2/3]"
 
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel6" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../D3")
+target_method = "start"
+connect_flag = 4
+
+[node name="D3" type="Timer" parent="ChatLabels"]
+wait_time = 59.0
+one_shot = true
+
+[node name="NodeIOMin" parent="ChatLabels/D3" instance=ExtResource( 12 )]
+on_signal = "timeout"
+target_path = NodePath("../../LowerLeftLabel7")
+target_method = "display_label"
+
+[node name="LowerLeftLabel7" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Multiple enemy missiles detected."
+
+[node name="LowerLeftLabel8" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Scanning for new targets."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel8" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../LowerLeftLabel9")
+target_method = "display_label"
+
+[node name="LowerLeftLabel9" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: No new targets."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel9" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../LowerLeftLabel10")
+target_method = "display_label"
+
+[node name="LowerLeftLabel10" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Repairing turret..."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel10" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../D4")
+target_method = "start"
+
+[node name="D4" type="Timer" parent="ChatLabels"]
+wait_time = 3.0
+one_shot = true
+
+[node name="NodeIOMin" parent="ChatLabels/D4" instance=ExtResource( 12 )]
+on_signal = "timeout"
+target_path = NodePath("../../LowerLeftLabel11")
+target_method = "display_label"
+
+[node name="LowerLeftLabel11" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Warning, terminal is not fully functional."
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel11" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../LowerLeftLabel12")
+target_method = "display_label"
+
+[node name="LowerLeftLabel12" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Waiting for the new task."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel12" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../D5")
+target_method = "start"
+
+[node name="D5" type="Timer" parent="ChatLabels"]
+wait_time = 3.0
+one_shot = true
+
+[node name="NodeIOMin" parent="ChatLabels/D5" instance=ExtResource( 12 )]
+on_signal = "timeout"
+target_path = NodePath("../../LowerLeftLabel13")
+target_method = "display_label"
+
+[node name="LowerLeftLabel13" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: No response from the commander."
+delay_before_remove = 4.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel13" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../LowerLeftLabel14")
+target_method = "display_label"
+
+[node name="LowerLeftLabel14" parent="ChatLabels" instance=ExtResource( 11 )]
+text = "Computer 1: Continue the original task."
+delay_before_remove = 3.0
+
+[node name="NodeIOMin" parent="ChatLabels/LowerLeftLabel14" instance=ExtResource( 12 )]
+on_signal = "done_display"
+target_path = NodePath("../../D6")
+target_method = "start"
+
+[node name="D6" type="Timer" parent="ChatLabels"]
+one_shot = true
+
+[node name="NodeIOMin" parent="ChatLabels/D6" instance=ExtResource( 12 )]
+on_signal = "timeout"
+target_path = NodePath("../../../LevelChanger")
+target_method = "_change_level"
+
 [node name="World2D" type="Node2D" parent="."]
 
 [node name="Skybg" type="Sprite" parent="World2D"]
@@ -142,6 +252,11 @@ texture = ExtResource( 5 )
 
 [node name="PlaneSpawner" parent="World2D/Planes" instance=ExtResource( 6 )]
 plane_spawn_data = "res://assets/plane_spawn_data/ch1_spawn.json"
+
+[node name="NodeIOMin" parent="World2D/Planes/PlaneSpawner" instance=ExtResource( 12 )]
+on_signal = "done_spawning_and_no_planes"
+target_path = NodePath("../../../../ChatLabels/LowerLeftLabel8")
+target_method = "display_label"
 
 [node name="Bullets" type="Node2D" parent="World2D"]
 
@@ -180,7 +295,7 @@ max_rounds = 16
 [node name="Shooter" parent="World2D/Turrets3" instance=ExtResource( 8 )]
 position = Vector2( 98, 236 )
 spread = 0.112
-reload = 0.079
+reload = 0.108
 
 [node name="TurretGroup" parent="World2D/Turrets3" instance=ExtResource( 9 )]
 group_index = 2

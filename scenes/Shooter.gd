@@ -62,6 +62,7 @@ func shoot() -> void:
                 position,
                 shoot_dir
             )
+
     emit_signal("fired")
 
     var min_delay := max(reload - rand.randf()*0.2, 0.07)
@@ -74,6 +75,12 @@ func shoot() -> void:
 func shooting_changed(v: bool) -> void:
     if not v:
         $FirstShotTimer.start(delay_before_first_shot)
+        if proj_type == 0:
+            $BulletSounds/Shoot1.play()
+    else:
+        if proj_type == 0:
+            $BulletSounds/Shoot1.stop()
+            $BulletSounds/ShootEnd.play()
 
 
 func _on_set_active(v: bool) -> void:

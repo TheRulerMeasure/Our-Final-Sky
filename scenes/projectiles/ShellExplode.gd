@@ -15,4 +15,4 @@ func shell_dead_set(dead: bool) -> void:
 
 func _on_body_entered(body: Node) -> void:
     if body.is_in_group("plane"):
-        body.call("damage", 10)
+        body.call("damage", 3)

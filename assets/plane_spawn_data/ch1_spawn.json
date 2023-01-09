@@ -1,50 +1,24 @@
 {
     "spawn_list": [
         {
-            "index": 0,
             "mob": 0,
             "spawn_pos": { "x": 520, "y": 100 },
             "delay_before_spawning": 10.0
         },
         {
-            "index": 1,
             "mob": 0,
-            "spawn_pos": { "x": 520, "y": 150 },
+            "spawn_pos": { "x": 520, "y": 155 },
             "delay_before_spawning": 5.0
         },
         {
-            "index": 2,
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 155 },
-            "delay_before_spawning": 1.0
-        },
-        {
-            "index": 3,
             "mob": 0,
             "spawn_pos": { "x": 520, "y": 175 },
-            "delay_before_spawning": 1.0
+            "delay_before_spawning": 2.75
         },
         {
-            "index": 4,
             "mob": 0,
             "spawn_pos": { "x": 520, "y": 175 },
-            "delay_before_spawning": 2.0
-        },
-        {
-            "index": 5,
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 175 },
-            "delay_before_spawning": 2.0
-        },
-        {
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 100 },
-            "delay_before_spawning": 3.0
-        },
-        {
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 130 },
-            "delay_before_spawning": 1.0
+            "delay_before_spawning": 17.0
         },
         {
             "mob": 0,
@@ -53,28 +27,103 @@
         },
         {
             "mob": 0,
-            "spawn_pos": { "x": 520, "y": 122 },
-            "delay_before_spawning": 0.5
-        },
-        {
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 111 },
-            "delay_before_spawning": 0.5
-        },
-        {
-            "mob": 0,
-            "spawn_pos": { "x": 520, "y": 100 },
-            "delay_before_spawning": 0.25
-        },
-        {
-            "mob": 0,
             "spawn_pos": { "x": 520, "y": 95 },
             "delay_before_spawning": 25.0
         },
         {
             "mob": 0,
+            "spawn_pos": { "x": 520, "y": 200 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 177 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 90 },
+            "delay_before_spawning": 2.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 114 },
+            "delay_before_spawning": 10.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 120 },
+            "delay_before_spawning": 0.1
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 129 },
+            "delay_before_spawning": 0.12
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 109 },
+            "delay_before_spawning": 0.1
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 90 },
+            "delay_before_spawning": 0.1
+        },
+        {
+            "mob": 1,
+            "spawn_pos": { "x": 520, "y": 107 },
+            "delay_before_spawning": 18.0
+        },
+        {
+            "mob": 1,
+            "spawn_pos": { "x": 520, "y": 99 },
+            "delay_before_spawning": 9.0
+        },
+        {
+            "mob": 1,
+            "spawn_pos": { "x": 520, "y": 98 },
+            "delay_before_spawning": 8.0
+        },
+        {
+            "mob": 1,
             "spawn_pos": { "x": 520, "y": 97 },
+            "delay_before_spawning": 9.8
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 80 },
+            "delay_before_spawning": 12.0
+        },
+        {
+            "mob": 1,
+            "spawn_pos": { "x": 520, "y": 200 },
             "delay_before_spawning": 3.0
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 88 },
+            "delay_before_spawning": 11.0
+        },
+        {
+            "mob": 1,
+            "spawn_pos": { "x": 520, "y": 210 },
+            "delay_before_spawning": 2.5
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 189 },
+            "delay_before_spawning": 4.75
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 207 },
+            "delay_before_spawning": 4.1
+        },
+        {
+            "mob": 0,
+            "spawn_pos": { "x": 520, "y": 85 },
+            "delay_before_spawning": 3.5
         }
     ]
 }
